@@ -1,0 +1,1295 @@
+---
+-   hosts: 127.0.0.1
+    connection: local
+    become: yes
+    remote_user: root
+    vars:
+        num_ues_init_database: '6'
+        web_application_access_port: '3000'
+        init_free5gc_elements_simulation: 'false'
+        start_webapp: 'true'
+        deploy_oaisim: 'true'
+        deploy_free5gc: 'true'
+        force_docker_reinstall: 'false'
+        init_enb: 'true'
+        init_ue: 'true'
+        num_ues_init_simulation: '5'
+        docker_custom_subnet_network: '192.188.2.0/24'
+        docker_custom_network_name: 'free5gc'
+        BASE_DIR_INSTALL: '/root/oaisim-free5g-install'
+        ip_address_AMF: '192.188.2.2'
+        ip_address_SMF: '192.188.2.3'
+        ip_address_HSS: '192.188.2.4'
+        ip_address_PCRF: '192.188.2.5'
+        ip_address_UPF: '192.188.2.6'
+        ip_address_MONGO_DB: '192.188.2.100'
+        ip_address_WEB_UI: '192.188.2.101'
+        ip_address_OAISIM_ENB: '192.188.2.253'
+        ip_address_OAISIM_UE: '192.188.2.254'
+        free5gc_st1_image_name: 'laboraufg/free5gc-st1'
+        free5gc_webui_image_name: 'laboraufg/webui-free5gc'
+        free5gc_mongodb_image_name: 'laboraufg/mongodb-free5gc'
+        oaisim_enb_image_name: 'laboraufg/enb-openairsim'
+        oaisim_ue_image_name: 'laboraufg/ue-openairsim'
+        UE_container_name: 'ue'
+        UE_folder_name_container_name: '/root/ue/'
+        ENB_folder_name_container_name: '/root/enb/'
+        ENB_container_name: 'enb'
+        AMF_container_name: 'amf'
+        UPF_container_name: 'upf'
+        SMF_container_name: 'smf'
+        HSS_container_name: 'hss'
+        PCRF_container_name: 'pcrf'
+        MONGO_DB_container_name: 'mongodb-svc'
+        WEB_UI_container_name: 'webui'
+        clear_file_instalation: 'true'
+        HPLMN : "20893"
+        default_username_WEBUI : "admin"
+        default_password_WEBUI : "1423"
+        enb_gumei_mcc_auth_param: '208'
+        enb_gumei_mnc_auth_param: '93'
+        log_level_tracer_free5gc: '5'
+        path_workspace_free5gc: '/root/free5gc-stage-1'
+        USIM_API_K : "8baf473f2f8fd09487cccbd7097c6862"
+        OPC : "e734f8734007d6c5ce7a0508809e7e9c"
+        user_equiments:
+            - { ue_id: UE0 ,   msin: '0000000001' }
+            - { ue_id: UE1 ,   msin: '0000000002' }
+            - { ue_id: UE2 ,   msin: '0000000003' }
+            - { ue_id: UE3 ,   msin: '0000000004' }
+            - { ue_id: UE4 ,   msin: '0000000005' }
+            - { ue_id: UE5 ,   msin: '0000000006' }
+            - { ue_id: UE6 ,   msin: '0000000007' }
+            - { ue_id: UE7 ,   msin: '0000000008' }
+            - { ue_id: UE8 ,   msin: '0000000009' }
+            - { ue_id: UE9 ,   msin: '0000000010' }
+            - { ue_id: UE10 ,  msin: '0000000011' }
+            - { ue_id: UE11 ,  msin: '0000000012' }
+            - { ue_id: UE12 ,  msin: '0000000013' }
+            - { ue_id: UE13 ,  msin: '0000000014' }
+            - { ue_id: UE14 ,  msin: '0000000015' }
+            - { ue_id: UE15 ,  msin: '0000000016' }
+            - { ue_id: UE16 ,  msin: '0000000017' }
+            - { ue_id: UE17 ,  msin: '0000000018' }
+            - { ue_id: UE18 ,  msin: '0000000019' }
+            - { ue_id: UE19 ,  msin: '0000000020' }
+            - { ue_id: UE20 ,  msin: '0000000021' }
+            - { ue_id: UE21 ,  msin: '0000000022' }
+            - { ue_id: UE22 ,  msin: '0000000023' }
+            - { ue_id: UE23 ,  msin: '0000000024' }
+            - { ue_id: UE24 ,  msin: '0000000025' }
+            - { ue_id: UE25 ,  msin: '0000000026' }
+            - { ue_id: UE26 ,  msin: '0000000027' }
+            - { ue_id: UE27 ,  msin: '0000000028' }
+            - { ue_id: UE28 ,  msin: '0000000029' }
+            - { ue_id: UE29 ,  msin: '0000000030' }
+            - { ue_id: UE30 ,  msin: '0000000031' }
+            - { ue_id: UE31 ,  msin: '0000000032' }
+            - { ue_id: UE32 ,  msin: '0000000033' }
+            - { ue_id: UE33 ,  msin: '0000000034' }
+            - { ue_id: UE34 ,  msin: '0000000035' }
+            - { ue_id: UE35 ,  msin: '0000000036' }
+            - { ue_id: UE36 ,  msin: '0000000037' }
+            - { ue_id: UE37 ,  msin: '0000000038' }
+            - { ue_id: UE38 ,  msin: '0000000039' }
+            - { ue_id: UE39 ,  msin: '0000000040' }
+            - { ue_id: UE40 ,  msin: '0000000041' }
+            - { ue_id: UE41 ,  msin: '0000000042' }
+            - { ue_id: UE42 ,  msin: '0000000043' }
+            - { ue_id: UE43 ,  msin: '0000000044' }
+            - { ue_id: UE44 ,  msin: '0000000045' }
+            - { ue_id: UE45 ,  msin: '0000000046' }
+            - { ue_id: UE46 ,  msin: '0000000047' }
+            - { ue_id: UE47 ,  msin: '0000000048' }
+            - { ue_id: UE48 ,  msin: '0000000049' }
+            - { ue_id: UE49 ,  msin: '0000000050' }
+            - { ue_id: UE50 ,  msin: '0000000051' }
+            - { ue_id: UE51 ,  msin: '0000000052' }
+            - { ue_id: UE52 ,  msin: '0000000053' }
+            - { ue_id: UE53 ,  msin: '0000000054' }
+            - { ue_id: UE54 ,  msin: '0000000055' }
+            - { ue_id: UE55 ,  msin: '0000000056' }
+            - { ue_id: UE56 ,  msin: '0000000057' }
+            - { ue_id: UE57 ,  msin: '0000000058' }
+            - { ue_id: UE58 ,  msin: '0000000059' }
+            - { ue_id: UE59 ,  msin: '0000000060' }
+            - { ue_id: UE60 ,  msin: '0000000061' }
+            - { ue_id: UE61 ,  msin: '0000000062' }
+            - { ue_id: UE62 ,  msin: '0000000063' }
+            - { ue_id: UE63 ,  msin: '0000000064' }
+            - { ue_id: UE64 ,  msin: '0000000065' }
+            - { ue_id: UE65 ,  msin: '0000000066' }
+            - { ue_id: UE66 ,  msin: '0000000067' }
+            - { ue_id: UE67 ,  msin: '0000000068' }
+            - { ue_id: UE68 ,  msin: '0000000069' }
+            - { ue_id: UE69 ,  msin: '0000000070' }
+            - { ue_id: UE70 ,  msin: '0000000071' }
+            - { ue_id: UE71 ,  msin: '0000000072' }
+            - { ue_id: UE72 ,  msin: '0000000073' }
+            - { ue_id: UE73 ,  msin: '0000000074' }
+            - { ue_id: UE74 ,  msin: '0000000075' }
+            - { ue_id: UE75 ,  msin: '0000000076' }
+            - { ue_id: UE76 ,  msin: '0000000077' }
+            - { ue_id: UE77 ,  msin: '0000000078' }
+            - { ue_id: UE78 ,  msin: '0000000079' }
+            - { ue_id: UE79 ,  msin: '0000000080' }
+            - { ue_id: UE80 ,  msin: '0000000081' }
+            - { ue_id: UE81 ,  msin: '0000000082' }
+            - { ue_id: UE82 ,  msin: '0000000083' }
+            - { ue_id: UE83 ,  msin: '0000000084' }
+            - { ue_id: UE84 ,  msin: '0000000085' }
+            - { ue_id: UE85 ,  msin: '0000000086' }
+            - { ue_id: UE86 ,  msin: '0000000087' }
+            - { ue_id: UE87 ,  msin: '0000000088' }
+            - { ue_id: UE88 ,  msin: '0000000089' }
+            - { ue_id: UE89 ,  msin: '0000000090' }
+            - { ue_id: UE90 ,  msin: '0000000091' }
+            - { ue_id: UE91 ,  msin: '0000000092' }
+            - { ue_id: UE92 ,  msin: '0000000093' }
+            - { ue_id: UE93 ,  msin: '0000000094' }
+            - { ue_id: UE94 ,  msin: '0000000095' }
+            - { ue_id: UE95 ,  msin: '0000000096' }
+            - { ue_id: UE96 ,  msin: '0000000097' }
+            - { ue_id: UE97 ,  msin: '0000000098' }
+            - { ue_id: UE98 ,  msin: '0000000099' }
+            - { ue_id: UE99 ,   msin: '0000000100' }
+            - { ue_id: UE100 ,  msin: '0000000101' }
+            - { ue_id: UE101 ,  msin: '0000000102' }
+            - { ue_id: UE102 ,  msin: '0000000103' }
+            - { ue_id: UE103 ,  msin: '0000000104' }
+            - { ue_id: UE104 ,  msin: '0000000105' }
+            - { ue_id: UE105 ,  msin: '0000000106' }
+            - { ue_id: UE106 ,  msin: '0000000107' }
+            - { ue_id: UE107 ,  msin: '0000000108' }
+            - { ue_id: UE108 ,  msin: '0000000109' }
+            - { ue_id: UE109 ,  msin: '0000000110' }
+            - { ue_id: UE110 ,  msin: '0000000111' }
+            - { ue_id: UE111 ,  msin: '0000000112' }
+            - { ue_id: UE112 ,  msin: '0000000112' }
+            - { ue_id: UE113 ,  msin: '0000000114' }
+            - { ue_id: UE114 ,  msin: '0000000115' }
+            - { ue_id: UE115 ,  msin: '0000000116' }
+            - { ue_id: UE116 ,  msin: '0000000117' }
+            - { ue_id: UE117 ,  msin: '0000000118' }
+            - { ue_id: UE118 ,  msin: '0000000119' }
+            - { ue_id: UE119 ,  msin: '0000000120' }
+            - { ue_id: UE120 ,  msin: '0000000121' }
+            - { ue_id: UE121 ,  msin: '0000000122' }
+            - { ue_id: UE122 ,  msin: '0000000123' }
+            - { ue_id: UE123 ,  msin: '0000000124' }
+            - { ue_id: UE124 ,  msin: '0000000125' }
+            - { ue_id: UE125 ,  msin: '0000000126' }
+            - { ue_id: UE126 ,  msin: '0000000127' }
+            - { ue_id: UE127 ,  msin: '0000000128' }
+            - { ue_id: UE128 ,  msin: '0000000129' }
+            - { ue_id: UE129 ,  msin: '0000000130' }
+            - { ue_id: UE130 ,  msin: '0000000131' }
+            - { ue_id: UE131 ,  msin: '0000000132' }
+            - { ue_id: UE132 ,  msin: '0000000133' }
+            - { ue_id: UE133 ,  msin: '0000000134' }
+            - { ue_id: UE134 ,  msin: '0000000135' }
+            - { ue_id: UE135 ,  msin: '0000000136' }
+            - { ue_id: UE136 ,  msin: '0000000137' }
+            - { ue_id: UE137 ,  msin: '0000000138' }
+            - { ue_id: UE138 ,  msin: '0000000139' }
+            - { ue_id: UE139 ,  msin: '0000000140' }
+            - { ue_id: UE140 ,  msin: '0000000141' }
+            - { ue_id: UE141 ,  msin: '0000000142' }
+            - { ue_id: UE142 ,  msin: '0000000143' }
+            - { ue_id: UE143 ,  msin: '0000000144' }
+            - { ue_id: UE144 ,  msin: '0000000145' }
+            - { ue_id: UE145 ,  msin: '0000000146' }
+            - { ue_id: UE146 ,  msin: '0000000147' }
+            - { ue_id: UE147 ,  msin: '0000000148' }
+            - { ue_id: UE148 ,  msin: '0000000149' }
+            - { ue_id: UE149 ,  msin: '0000000150' }
+            - { ue_id: UE150 ,  msin: '0000000151' }
+            - { ue_id: UE151 ,  msin: '0000000152' }
+            - { ue_id: UE152 ,  msin: '0000000153' }
+            - { ue_id: UE153 ,  msin: '0000000154' }
+            - { ue_id: UE154 ,  msin: '0000000155' }
+            - { ue_id: UE155 ,  msin: '0000000156' }
+            - { ue_id: UE156 ,  msin: '0000000157' }
+            - { ue_id: UE157 ,  msin: '0000000158' }
+            - { ue_id: UE158 ,  msin: '0000000159' }
+            - { ue_id: UE159 ,  msin: '0000000160' }
+            - { ue_id: UE160 ,  msin: '0000000161' }
+            - { ue_id: UE161 ,  msin: '0000000162' }
+            - { ue_id: UE162 ,  msin: '0000000163' }
+            - { ue_id: UE163 ,  msin: '0000000164' }
+            - { ue_id: UE164 ,  msin: '0000000165' }
+            - { ue_id: UE165 ,  msin: '0000000166' }
+            - { ue_id: UE166 ,  msin: '0000000167' }
+            - { ue_id: UE167 ,  msin: '0000000168' }
+            - { ue_id: UE168 ,  msin: '0000000169' }
+            - { ue_id: UE169 ,  msin: '0000000170' }
+            - { ue_id: UE170 ,  msin: '0000000171' }
+            - { ue_id: UE171 ,  msin: '0000000172' }
+            - { ue_id: UE172 ,  msin: '0000000173' }
+            - { ue_id: UE173 ,  msin: '0000000174' }
+            - { ue_id: UE174 ,  msin: '0000000175' }
+            - { ue_id: UE175 ,  msin: '0000000176' }
+            - { ue_id: UE176 ,  msin: '0000000177' }
+            - { ue_id: UE177 ,  msin: '0000000178' }
+            - { ue_id: UE178 ,  msin: '0000000179' }
+            - { ue_id: UE179 ,  msin: '0000000180' }
+            - { ue_id: UE180 ,  msin: '0000000181' }
+            - { ue_id: UE181 ,  msin: '0000000182' }
+            - { ue_id: UE182 ,  msin: '0000000183' }
+            - { ue_id: UE183 ,  msin: '0000000184' }
+            - { ue_id: UE184 ,  msin: '0000000185' }
+            - { ue_id: UE185 ,  msin: '0000000186' }
+            - { ue_id: UE186 ,  msin: '0000000187' }
+            - { ue_id: UE187 ,  msin: '0000000188' }
+            - { ue_id: UE188 ,  msin: '0000000189' }
+            - { ue_id: UE189 ,  msin: '0000000190' }
+            - { ue_id: UE190 ,  msin: '0000000191' }
+            - { ue_id: UE191 ,  msin: '0000000192' }
+            - { ue_id: UE192 ,  msin: '0000000193' }
+            - { ue_id: UE193 ,  msin: '0000000194' }
+            - { ue_id: UE194 ,  msin: '0000000195' }
+            - { ue_id: UE195 ,  msin: '0000000196' }
+            - { ue_id: UE196 ,  msin: '0000000197' }
+            - { ue_id: UE197 ,  msin: '0000000198' }
+            - { ue_id: UE198 ,  msin: '0000000199' }
+            - { ue_id: UE199 ,  msin: '0000000200' }
+    tasks:
+        - name: Environment validation!
+          assert:
+            that:
+              - ansible_memtotal_mb >= 3500
+            msg: "Minimum memory requirements in the deployment environment is 4GB! Operation failed!"
+
+        - fail: 
+            msg: "'USIM_API_K' value cannot be different of of 8baf473f2f8fd09487cccbd7097c6862"
+          when: USIM_API_K != '8baf473f2f8fd09487cccbd7097c6862'
+
+        - fail: 
+            msg: "It's not possible INIT_UE whitout INIT_ENB, plese set init_enb='true' and try again!"
+          when: init_ue == 'true'  and init_enb == 'false'
+
+        - fail: 
+            msg: "'OPC' value cannot be different of of e734f8734007d6c5ce7a0508809e7e9c"
+          when: OPC != 'e734f8734007d6c5ce7a0508809e7e9c'
+
+        - fail: 
+            msg: "'HPLMN' value cannot be different of of 20893"
+          when: HPLMN != '20893'
+
+        - fail: 
+            msg: "'physical_network_interface' not found, this parameter is required!"
+          when: physical_network_interface == ''
+          
+        - name  : Remove old instalation
+          shell :  |
+                sudo rm -rf {{ BASE_DIR_INSTALL }}
+                
+        - name  : Remove docker installation
+          shell :  |
+                sudo apt autoremove -y --purge docker-engine docker docker.io docker-ce 
+                sudo apt update
+          when: force_docker_reinstall == 'true'
+        
+        - name  : Install Basic requirements
+          apt   :
+                name: ['openssh-client', 'net-tools', 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg2', 'software-properties-common', 'python-setuptools', 'python3-pip']
+                state: present
+                update_cache: yes
+                
+        - name  : Create dir instalation
+          shell :  |
+                mkdir {{ BASE_DIR_INSTALL }}
+        
+        - name  : Build iptables_upf.sh file
+          copy  :
+            dest: "{{ BASE_DIR_INSTALL }}/iptables_upf.sh"
+            content: |
+                #!/bin/bash
+
+                iptables -C FORWARD -i uptun -o eth0 -j ACCEPT
+                output=$?
+                if [ $output -eq 1 ]; then
+                    echo "Masquerade..."
+                    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+                    echo "Conntrack..."
+                    iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+                    echo "Uptun..."
+                    iptables -A FORWARD -i uptun -o eth0 -j ACCEPT
+                fi
+          when  : deploy_free5gc == 'true'
+
+        - name  : Build setup_upf.sh file
+          copy  :
+            dest: "{{ BASE_DIR_INSTALL }}/setup_upf.sh"
+            content: |
+                #!/bin/sh
+
+                if ! grep "uptun" /proc/net/dev > /dev/null; then
+                    ip tuntap add name uptun mode tun
+                fi
+                ip addr del 45.45.0.1/16 dev uptun 2> /dev/null
+                ip addr add 45.45.0.1/16 dev uptun
+                ip addr del cafe::1/64 dev uptun 2> /dev/null
+                ip addr add cafe::1/64 dev uptun
+                ip link set uptun up
+          when  : deploy_free5gc == 'true'
+
+        - name  : Core Network Configuration - Build free5gc.conf
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/free5gc.conf"
+            content: |
+              db_uri: mongodb://mongodb-svc/free5gc
+              logger:
+                  file: {{ path_workspace_free5gc }}/install/var/log/free5gc/free5gc.log
+                  trace: 
+                      app: {{ log_level_tracer_free5gc }}
+                      s1ap: {{ log_level_tracer_free5gc }}
+                      nas: {{ log_level_tracer_free5gc }}
+                      diameter: {{ log_level_tracer_free5gc }}
+                      gtp: {{ log_level_tracer_free5gc }}
+                      pfcp: {{ log_level_tracer_free5gc }}
+                      sbi: {{ log_level_tracer_free5gc }}
+              
+              parameter:
+                  no_ipv6: true
+              amf:
+                  freeDiameter: amf.conf
+              
+                  s1ap:
+                    addr: {{ ip_address_AMF }}
+              
+                  gummei: 
+                    plmn_id:
+                      mcc: {{ enb_gumei_mcc_auth_param }}
+                      mnc: {{ enb_gumei_mnc_auth_param }}
+                    mme_gid: 1
+                    mme_code: 1
+              
+                  tai:
+                    plmn_id:
+                      mcc: {{ enb_gumei_mcc_auth_param }}
+                      mnc: {{ enb_gumei_mnc_auth_param }}
+                    tac: 1
+                  security:
+                      integrity_order : [ EIA1, EIA2, EIA0 ]
+                      ciphering_order : [ EEA0, EEA1, EEA2 ]
+              
+                  network_name:
+                      full: free5GC
+              hss:
+                  freeDiameter: hss.conf
+              pcrf:
+                  freeDiameter: pcrf.conf
+              smf:
+                  freeDiameter: smf.conf
+                  pfcp:
+                    - addr: {{ ip_address_SMF }}
+                  upf:
+                    - addr: {{ ip_address_UPF }}
+                  http:
+                    addr: {{ ip_address_SMF }}
+                    port: 8080
+              
+                  ue_pool:
+                    - addr: 45.45.0.1/16
+              
+                  dns:
+                    - 8.8.8.8
+                    - 8.8.4.4
+              upf:
+                  pfcp:
+                    addr:
+                      - {{ ip_address_UPF }}
+              
+                  gtpu:
+                    - addr: {{ ip_address_UPF }}
+                  ue_pool:
+                    - addr: 45.45.0.1/16
+                  dns:
+                    - 8.8.8.8
+                    - 8.8.4.4
+          when  : deploy_free5gc == 'true'
+
+        - name  : Core Network Configuration - Build amf.conf
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/amf.conf"
+            content: |
+              Identity = "amf.localdomain";
+              Realm = "localdomain";
+              No_SCTP;
+              ListenOn = "{{ ip_address_AMF }}";
+              TLS_Cred = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/amf.cert.pem", "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/amf.key.pem";
+              TLS_CA = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/cacert.pem";
+              LoadExtension = "dbg_msg_dumps.so" : "0x8888";
+              LoadExtension = "dict_rfc5777.so";
+              LoadExtension = "dict_mip6i.so";
+              LoadExtension = "dict_nasreq.so";
+              LoadExtension = "dict_nas_mipv6.so";
+              LoadExtension = "dict_dcca.so";
+              LoadExtension = "dict_dcca_3gpp.so";
+              LoadExtension = "dict_s6a.so";
+              ConnectPeer = "hss.localdomain" { ConnectTo = "{{ ip_address_HSS }}"; No_TLS; };
+          when  : deploy_free5gc == 'true'
+
+        - name  : Core Network Configuration - Build smf.conf
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/smf.conf"
+            content: |
+              Identity = "smf.localdomain";
+              Realm = "localdomain";
+              No_SCTP;
+              ListenOn = "{{ ip_address_SMF }}";
+              TLS_Cred = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/smf.cert.pem", "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/smf.key.pem";
+              TLS_CA = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/cacert.pem";
+              LoadExtension = "dbg_msg_dumps.so" : "0x8888";
+              LoadExtension = "dict_rfc5777.so";
+              LoadExtension = "dict_mip6i.so";
+              LoadExtension = "dict_nasreq.so";
+              LoadExtension = "dict_nas_mipv6.so";
+              LoadExtension = "dict_dcca.so";
+              LoadExtension = "dict_dcca_3gpp.so";
+              ConnectPeer = "pcrf.localdomain" { ConnectTo = "{{ ip_address_PCRF }}"; No_TLS; };
+          when  : deploy_free5gc == 'true'
+
+        - name  : Core Network Configuration - Build hss.conf
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/hss.conf"
+            content: |
+                Identity = "hss.localdomain";
+                Realm = "localdomain";
+                No_SCTP;
+                ListenOn = "{{ ip_address_HSS }}";
+                TLS_Cred = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/hss.cert.pem", "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/hss.key.pem";
+                TLS_CA = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/cacert.pem";
+                
+                LoadExtension = "dbg_msg_dumps.so" : "0x8888";
+                LoadExtension = "dict_rfc5777.so";
+                LoadExtension = "dict_mip6i.so";
+                LoadExtension = "dict_nasreq.so";
+                LoadExtension = "dict_nas_mipv6.so";
+                LoadExtension = "dict_dcca.so";
+                LoadExtension = "dict_dcca_3gpp.so";
+                LoadExtension = "dict_s6a.so";
+                ConnectPeer = "amf.localdomain" { ConnectTo = "{{ ip_address_AMF }}"; No_TLS; };
+          when  : deploy_free5gc == 'true'
+
+        - name  : Core Network Configuration - Build pcrf.conf
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/pcrf.conf"
+            content: |
+                Identity = "pcrf.localdomain";
+                Realm = "localdomain";
+                No_SCTP;
+                ListenOn = "{{ ip_address_PCRF }}";
+                TLS_Cred = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/pcrf.cert.pem", "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/pcrf.key.pem";
+                TLS_CA = "{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/cacert.pem";
+                LoadExtension = "dbg_msg_dumps.so" : "0x8888";
+                LoadExtension = "dict_rfc5777.so";
+                LoadExtension = "dict_mip6i.so";
+                LoadExtension = "dict_nasreq.so";
+                LoadExtension = "dict_nas_mipv6.so";
+                LoadExtension = "dict_dcca.so";
+                LoadExtension = "dict_dcca_3gpp.so";
+                ConnectPeer = "smf.localdomain" { ConnectTo = "{{ ip_address_SMF }}"; No_TLS; };
+          when  : deploy_free5gc == 'true'
+
+        - name  : Add Docker GPG key into apt
+          apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+        - name  : Add Docker APT repository
+          apt_repository:
+            repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} edge
+
+        - name  : Update APT
+          shell :  |
+                sudo apt update
+
+        - name  : Install Docker - CE
+          apt:
+            name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+            state: present
+            update_cache: yes
+
+        - name  : Stop UE container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ UE_container_name }}
+
+        - name  : Stop ENB container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ ENB_container_name }}
+
+        - name  : Stop PCRF container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ PCRF_container_name }}
+
+        - name  : Stop HSS container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ HSS_container_name }}
+
+        - name  : Stop SMF container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ SMF_container_name }}
+
+        - name  : Stop UPF container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ UPF_container_name }}
+
+        - name  : Stop AMF container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop -t 1 {{ AMF_container_name }}
+
+        - name  : Stop WEBUE container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop {{ WEB_UI_container_name }}
+
+        - name  : Stop MONGODB container - If exists
+          ignore_errors: true
+          shell:  |
+                docker stop {{ MONGO_DB_container_name }}
+
+        - name  : Run doker prune in stoped containers
+          ignore_errors: true
+          shell:  |
+                docker container prune -f
+
+        - name  : Remove free5gc-st1 image
+          ignore_errors: true
+          shell:  |
+                docker image rm {{ free5gc_st1_image_name }}
+          when: force_docker_reinstall == 'true'
+
+        - name  : Remove free5gc-mongodb image
+          ignore_errors: true
+          shell:  |
+                docker image rm {{ free5gc_mongodb_image_name }}
+          when: force_docker_reinstall == 'true'
+
+        - name  : Remove enb-openairsim image
+          ignore_errors: true
+          shell:  |
+                docker image rm {{ oaisim_ue_image_name }}
+          when: force_docker_reinstall == 'true'
+
+        - name  : Remove ue-openairsim image
+          ignore_errors: true
+          shell:  |
+                docker image rm {{ oaisim_enb_image_name }}
+          when: force_docker_reinstall == 'true'
+
+        - name  : Remove free5gc-webui image
+          ignore_errors: true
+          shell:  |
+                docker image rm {{ free5gc_webui_image_name }}
+          when: force_docker_reinstall == 'true'
+
+        - name  : Remove free5g docker custom network
+          ignore_errors: true
+          shell:  |
+                docker network rm {{ docker_custom_network_name }}
+
+        - name  : Create Docker custom network
+          shell:  | 
+                docker network create --subnet={{ docker_custom_subnet_network }} --driver bridge {{ docker_custom_network_name }}            
+ 
+        - name  : Run free5gc MONGO-DB container
+          shell:  |
+                docker run -ti -d --net {{ docker_custom_network_name }} --ip {{ ip_address_MONGO_DB }} --name {{ MONGO_DB_container_name }} {{ free5gc_mongodb_image_name }} bash
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc AMF container
+          shell :  |
+                docker run -ti -d --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_AMF }} --name {{ AMF_container_name }} {{ free5gc_st1_image_name }} bash 
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc UPF container
+          shell :  |
+                docker run -ti -d --device=/dev/net/tun:/dev/net/tun --cap-add=NET_ADMIN --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_UPF }} --name {{ UPF_container_name }} {{ free5gc_st1_image_name }} bash 
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc SMF container
+          shell:  |
+                docker run -ti -d --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_SMF }} --name {{ SMF_container_name }} {{ free5gc_st1_image_name }} bash 
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc HSS container
+          shell:  |
+                docker run -ti -d --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_HSS }} --name {{ HSS_container_name }} {{ free5gc_st1_image_name }} bash 
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc PCRF container
+          shell:  |
+                docker run -ti -d --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_PCRF }} --name {{ PCRF_container_name }} {{ free5gc_st1_image_name }} bash 
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run free5gc WEBUI container
+          shell :  |
+                docker run -ti -d -p {{ web_application_access_port }}:3000 --net {{ docker_custom_network_name }} --ip {{ ip_address_WEB_UI }} --name {{ WEB_UI_container_name }} {{ free5gc_webui_image_name }} bash
+          when  : deploy_free5gc == 'true'
+
+        - name  : Run OpenAirSIM-enB container
+          shell :  |
+                docker run -ti -d --cap-add=NET_ADMIN --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_OAISIM_ENB }} --name {{ ENB_container_name }} {{ oaisim_enb_image_name }} bash 
+          when  : deploy_oaisim == 'true'
+
+        - name  : Run OpenAirSIM-UE container
+          shell :  |
+                docker run -ti -d --cap-add=NET_ADMIN --privileged --net {{ docker_custom_network_name }} --ip {{ ip_address_OAISIM_UE }} --name {{ UE_container_name }} {{ oaisim_ue_image_name }} bash 
+          when  : deploy_oaisim == 'true'
+                
+        - name  : Build enB rcc.band7.tm1.nfapi.conf file 1/3 
+          shell : |
+                docker exec {{ ENB_container_name }} /bin/sh -c "rm enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build enB rcc.band7.tm1.nfapi.conf file 2/3
+          copy  :
+            dest: "{{ BASE_DIR_INSTALL }}/rcc.band7.tm1.nfapi.conf"
+            content: |
+                Active_eNBs = ( "Computer Networks and Distributed Systems LABORAtory https://labora.inf.ufg.br - Brazil");
+                # Asn1_verbosity, choice in: none, info, annoying
+                Asn1_verbosity = "none";
+
+                eNBs =
+                (
+                {
+                    ////////// Identification parameters:
+                    eNB_ID    =  0xe00;
+
+                    cell_type =  "CELL_MACRO_ENB";
+
+                    eNB_name  =  "Computer Networks and Distributed Systems LABORAtory https://labora.inf.ufg.br - Brazil";
+
+                    // Tracking area code, 0x0000 and 0xfffe are reserved values
+                    tracking_area_code = 1;
+
+                    plmn_list = ( { mcc = 208; mnc = 93; mnc_length = 2; } );
+
+                    tr_s_preference     = "local_mac"
+
+                    ////////// Physical parameters:
+
+                    component_carriers = (
+                    {
+                    node_function                       = "3GPP_eNODEB";
+                    node_timing                         = "synch_to_ext_device";
+                    node_synch_ref                      = 0;
+                    frame_type					                = "FDD";
+                    tdd_config 					                = 3;
+                    tdd_config_s            			      = 0;
+                    prefix_type             			      = "NORMAL";
+                    eutra_band              			      = 7;
+                    downlink_frequency      			      = 2685000000L;
+                    uplink_frequency_offset 			      = -120000000;
+                    Nid_cell					                  = 0;
+                    N_RB_DL                 			      = 50;
+                    Nid_cell_mbsfn          			      = 0;
+                    nb_antenna_ports                    = 1;
+                    nb_antennas_tx          			      = 1;
+                    nb_antennas_rx          			      = 1;
+                    tx_gain                             = 90;
+                    rx_gain                             = 125;
+                    pbch_repetition                     = "FALSE";
+                    prach_root              			      = 0;
+                    prach_config_index      			      = 0;
+                    prach_high_speed        			      = "DISABLE";
+                    prach_zero_correlation  			      = 1;
+                    prach_freq_offset       			      = 2;
+                    pucch_delta_shift       			      = 1;
+                    pucch_nRB_CQI           			      = 0;
+                    pucch_nCS_AN            			      = 0;
+                    pucch_n1_AN             			      = 0;
+                    pdsch_referenceSignalPower 			    = -27;
+                    pdsch_p_b                  			    = 0;
+                    pusch_n_SB                 			    = 1;
+                    pusch_enable64QAM          			    = "DISABLE";
+                    pusch_hoppingMode                   = "interSubFrame";
+                    pusch_hoppingOffset                 = 0;
+                    pusch_groupHoppingEnabled  			    = "ENABLE";
+                    pusch_groupAssignment      			    = 0;
+                    pusch_sequenceHoppingEnabled		   	= "DISABLE";
+                    pusch_nDMRS1                        = 1;
+                    phich_duration                      = "NORMAL";
+                    phich_resource                      = "ONESIXTH";
+                    srs_enable                          = "DISABLE";
+                    /*  srs_BandwidthConfig             =;
+                    srs_SubframeConfig                  =;
+                    srs_ackNackST                       =;
+                    srs_MaxUpPts                        =;*/
+
+                    pusch_p0_Nominal                    = -96;
+                    pusch_alpha                         = "AL1";
+                    pucch_p0_Nominal                    = -104;
+                    msg3_delta_Preamble                 = 6;
+                    pucch_deltaF_Format1                = "deltaF2";
+                    pucch_deltaF_Format1b               = "deltaF3";
+                    pucch_deltaF_Format2                = "deltaF0";
+                    pucch_deltaF_Format2a               = "deltaF0";
+                    pucch_deltaF_Format2b		    	      = "deltaF0";
+
+                    rach_numberOfRA_Preambles           = 64;
+                    rach_preamblesGroupAConfig          = "DISABLE";
+                    /*
+                    rach_sizeOfRA_PreamblesGroupA       = ;
+                    rach_messageSizeGroupA              = ;
+                    rach_messagePowerOffsetGroupB       = ;
+                    */
+                    rach_powerRampingStep                       = 4;
+                    rach_preambleInitialReceivedTargetPower     = -108;
+                    rach_preambleTransMax                       = 10;
+                    rach_raResponseWindowSize                   = 10;
+                    rach_macContentionResolutionTimer           = 48;
+                    rach_maxHARQ_Msg3Tx                         = 4;
+
+                    pcch_default_PagingCycle                    = 128;
+                    pcch_nB                                     = "oneT";
+                    bcch_modificationPeriodCoeff			          = 2;
+                    ue_TimersAndConstants_t300			            = 1000;
+                    ue_TimersAndConstants_t301			            = 1000;
+                    ue_TimersAndConstants_t310			            = 1000;
+                    ue_TimersAndConstants_t311			            = 10000;
+                    ue_TimersAndConstants_n310			            = 20;
+                    ue_TimersAndConstants_n311			            = 1;
+                    ue_TransmissionMode                         = 1;
+
+                    //Parameters for SIB18
+                    rxPool_sc_CP_Len                            = "normal";
+                    rxPool_sc_Period                            = "sf40";
+                    rxPool_data_CP_Len                          = "normal";
+                    rxPool_ResourceConfig_prb_Num               = 20;
+                    rxPool_ResourceConfig_prb_Start             = 5;
+                    rxPool_ResourceConfig_prb_End               = 44;
+                    rxPool_ResourceConfig_offsetIndicator_present = "prSmall";
+                    rxPool_ResourceConfig_offsetIndicator_choice  = 0;
+                    rxPool_ResourceConfig_subframeBitmap_present  = "prBs40";
+                    rxPool_ResourceConfig_subframeBitmap_choice_bs_buf  = "00000000000000000000";
+                    rxPool_ResourceConfig_subframeBitmap_choice_bs_size = 5;
+                    rxPool_ResourceConfig_subframeBitmap_choice_bs_bits_unused  = 0;
+                /*    rxPool_dataHoppingConfig_hoppingParameter                 = 0;
+                    rxPool_dataHoppingConfig_numSubbands                        = "ns1";
+                    rxPool_dataHoppingConfig_rbOffset                           = 0;
+                    rxPool_commTxResourceUC-ReqAllowed                          = "TRUE";
+                */
+                    // Parameters for SIB19
+                    discRxPool_cp_Len                                           = "normal"
+                    discRxPool_discPeriod                                       = "rf32"
+                    discRxPool_numRetx                                          = 1;
+                    discRxPool_numRepetition                                    = 2;
+                    discRxPool_ResourceConfig_prb_Num                           = 5;
+                    discRxPool_ResourceConfig_prb_Start                         = 3;
+                    discRxPool_ResourceConfig_prb_End                           = 21;
+                    discRxPool_ResourceConfig_offsetIndicator_present           = "prSmall";
+                    discRxPool_ResourceConfig_offsetIndicator_choice            = 0;
+                    discRxPool_ResourceConfig_subframeBitmap_present            = "prBs40";
+                    discRxPool_ResourceConfig_subframeBitmap_choice_bs_buf      = "f0ffffffff";
+                    discRxPool_ResourceConfig_subframeBitmap_choice_bs_size     = 5;
+                    discRxPool_ResourceConfig_subframeBitmap_choice_bs_bits_unused  = 0;
+
+                    }
+                    );
+
+
+                    srb1_parameters :
+                    {
+                        # timer_poll_retransmit = (ms) [5, 10, 15, 20,... 250, 300, 350, ... 500]
+                        timer_poll_retransmit    = 80;
+
+                        # timer_reordering = (ms) [0,5, ... 100, 110, 120, ... ,200]
+                        timer_reordering         = 35;
+
+                        # timer_reordering = (ms) [0,5, ... 250, 300, 350, ... ,500]
+                        timer_status_prohibit    = 0;
+
+                        # poll_pdu = [4, 8, 16, 32 , 64, 128, 256, infinity(>10000)]
+                        poll_pdu                 =  4;
+
+                        # poll_byte = (kB) [25,50,75,100,125,250,375,500,750,1000,1250,1500,2000,3000,infinity(>10000)]
+                        poll_byte                =  99999;
+
+                        # max_retx_threshold = [1, 2, 3, 4 , 6, 8, 16, 32]
+                        max_retx_threshold       =  4;
+                    }
+
+                    # ------- SCTP definitions
+                    SCTP :
+                    {
+                        # Number of streams to use in input/output
+                        SCTP_INSTREAMS  = 2;
+                        SCTP_OUTSTREAMS = 2;
+                    };
+
+
+                    ////////// MME parameters:
+                    mme_ip_address      = ( {   ipv4       = "{{ ip_address_AMF }}";
+                                                ipv6       = "192:168:30::17";
+                                                active     = "yes";
+                                                preference = "ipv4";
+                                            }
+                                        );
+
+                    NETWORK_INTERFACES :
+                    {
+                        ENB_INTERFACE_NAME_FOR_S1_MME            = "{{ physical_network_interface }}";
+                        ENB_IPV4_ADDRESS_FOR_S1_MME              = "{{ ip_address_OAISIM_ENB }}";
+                        ENB_INTERFACE_NAME_FOR_S1U               = "{{ physical_network_interface }}";
+                        ENB_IPV4_ADDRESS_FOR_S1U                 = "{{ ip_address_OAISIM_ENB }}";
+                        ENB_PORT_FOR_S1U                         = 2152; # Spec 2152
+                        ENB_IPV4_ADDRESS_FOR_X2C                 = "{{ ip_address_OAISIM_ENB }}";
+                        ENB_PORT_FOR_X2C                         = 36422; # Spec 36422
+                        
+                    };
+                }
+                );
+
+                MACRLCs = (
+                    {
+                    num_cc = 1;
+                        local_s_if_name  = "lo:";			  
+                        remote_s_address = "{{ ip_address_OAISIM_UE }}";
+                        local_s_address  = "{{ ip_address_OAISIM_ENB }}"; 
+                        local_s_portc    = 50001;	
+                        remote_s_portc   = 50000;
+                        local_s_portd    = 50011;	
+                        remote_s_portd   = 50010;
+                        tr_s_preference = "nfapi";
+                        tr_n_preference = "local_RRC";
+                        }  
+                );
+
+                RUs = (
+                    {
+                        local_rf       = "yes"
+                        nb_tx          = 1
+                        nb_rx          = 1
+                        att_tx         = 20
+                        att_rx         = 0;
+                        bands          = [38];
+                        max_pdschReferenceSignalPower = -23;
+                        max_rxgain                    = 116;
+                        eNB_instances  = [0];
+                    }
+                );
+
+
+                THREAD_STRUCT = (
+                {
+                    #three config for level of parallelism "PARALLEL_SINGLE_THREAD", "PARALLEL_RU_L1_SPLIT", or "PARALLEL_RU_L1_TRX_SPLIT"
+                    parallel_config    = "PARALLEL_RU_L1_TRX_SPLIT";
+                    #two option for worker "WORKER_DISABLE" or "WORKER_ENABLE"
+                    worker_config      = "WORKER_ENABLE";
+                }
+                );
+
+                log_config =
+                    {
+                    global_log_level                      ="info";
+                    global_log_verbosity                  ="medium";
+                    hw_log_level                          ="info";
+                    hw_log_verbosity                      ="medium";
+                    phy_log_level                         ="info";
+                    phy_log_verbosity                     ="medium";
+                    mac_log_level                         ="info";
+                    mac_log_verbosity                     ="high";
+                    rlc_log_level                         ="info";
+                    rlc_log_verbosity                     ="medium";
+                    pdcp_log_level                        ="info";
+                    pdcp_log_verbosity                    ="medium";
+                    rrc_log_level                         ="info";
+                    rrc_log_verbosity                     ="medium";
+                };
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build enB rcc.band7.tm1.nfapi.conf file 3/3 
+          shell : |
+                docker cp ./rcc.band7.tm1.nfapi.conf {{ ENB_container_name }}:{{ ENB_folder_name_container_name }}/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue.nfapi.conf file 1/3 
+          shell : |
+                  docker exec {{ UE_container_name }} /bin/sh -c "rm {{ UE_folder_name_container_name }}/ci-scripts/conf_files/ue.nfapi.conf"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue.nfapi.conf file 2/3
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/ue.nfapi.conf"
+            content: |
+                log_config = {
+                  global_log_level                      ="info";
+                  global_log_verbosity                  ="medium";
+                  hw_log_level                          ="info";
+                  hw_log_verbosity                      ="medium";
+                  phy_log_level                         ="info";
+                  phy_log_verbosity                     ="medium";
+                  mac_log_level                         ="info";
+                  mac_log_verbosity                     ="medium";
+                  rlc_log_level                         ="info";
+                  rlc_log_verbosity                     ="medium";
+                  pdcp_log_level                        ="info";
+                  pdcp_log_verbosity                    ="medium";
+                  rrc_log_level                         ="info";
+                  rrc_log_verbosity                     ="full";
+                };
+
+
+                L1s = (
+                        {
+                        num_cc = 1;
+                        tr_n_preference = "nfapi";
+                        local_n_if_name  = "{{ physical_network_interface }}";
+                        remote_n_address = "{{ ip_address_OAISIM_ENB }}";
+                        local_n_address  = "{{ ip_address_OAISIM_UE }}";
+                        local_n_portc    = 50000;
+                        remote_n_portc   = 50001;
+                        local_n_portd    = 50010;
+                        remote_n_portd   = 50011;
+                        }  
+                );
+
+                RUs = (
+                    {		  
+                      local_rf       = "yes"
+                      nb_tx          = 1
+                      nb_rx          = 1
+                      att_tx         = 90
+                      att_rx         = 0;
+                      bands          = [7,38,42,43];
+                      max_pdschReferenceSignalPower = -27;
+                      max_rxgain                    = 125;
+                    }		      
+                );
+          when  : deploy_oaisim == 'true'
+        
+        - name  : Build UE ue.nfapi.conf file 3/3 
+          shell : |
+                docker cp ./ue.nfapi.conf {{ UE_container_name }}:/{{ UE_folder_name_container_name }}/ci-scripts/conf_files/ue.nfapi.conf
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue_eurecom_test_sfr.conf file 1/5 
+          shell : |
+                  docker exec {{ UE_container_name }} /bin/sh -c "rm {{ UE_folder_name_container_name }}/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue_eurecom_test_sfr.conf file 2/5 
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/ue_eurecom_test_sfr.conf"
+            content: |
+                # List of known PLMNS
+                PLMN: {
+                    PLMN0: {
+                        FULLNAME="Test network";
+                        SHORTNAME="OAI4G";
+                        MNC="01";
+                        MCC="001";
+
+                    };
+                    PLMN1: {
+                        FULLNAME="SFR France";
+                        SHORTNAME="SFR";
+                        MNC="10";
+                        MCC="208";
+
+                    };
+                    PLMN2: {
+                        FULLNAME="SFR France";
+                        SHORTNAME="SFR";
+                        MNC="11";
+                        MCC="208";
+                    };
+                    PLMN3: {
+                        FULLNAME="SFR France";
+                        SHORTNAME="SFR";
+                        MNC="13";
+                        MCC="208";
+                    };
+                    PLMN4: {
+                        FULLNAME="OAI LTEBOX";
+                        SHORTNAME="OAIALU";
+                        MNC="93";
+                        MCC="208";
+                    };
+                    PLMN5: {
+                        FULLNAME="T-Mobile USA";
+                        SHORTNAME="T-Mobile";
+                        MNC="280";
+                        MCC="310";
+                    };
+                    PLMN6: {
+                        FULLNAME="FICTITIOUS USA";
+                        SHORTNAME="FICTITIO";
+                        MNC="028";
+                        MCC="310";
+                    };
+                    PLMN7: {
+                        FULLNAME="Vodafone Italia";
+                        SHORTNAME="VODAFONE";
+                        MNC="10";
+                        MCC="222";
+                    };
+                    PLMN8: {
+                        FULLNAME="Vodafone Spain";
+                        SHORTNAME="VODAFONE";
+                        MNC="01";
+                        MCC="214";
+                    };
+                    PLMN9: {
+                        FULLNAME="Vodafone Spain";
+                        SHORTNAME="VODAFONE";
+                        MNC="06";
+                        MCC="214";
+                    };
+                    PLMN10: {
+                        FULLNAME="Vodafone Germ";
+                        SHORTNAME="VODAFONE";
+                        MNC="02";
+                        MCC="262";
+                    };
+                    PLMN11: {
+                        FULLNAME="Vodafone Germ";
+                        SHORTNAME="VODAFONE";
+                        MNC="04";
+                        MCC="262";
+                    };
+                };
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue_eurecom_test_sfr.conf file 3/5
+          blockinfile:
+            path: /{{ BASE_DIR_INSTALL }}/ue_eurecom_test_sfr.conf
+            block: |
+                {{ item.ue_id }}:
+                  {
+                        USER: {
+                            IMEI="356113022094149";
+                            MANUFACTURER="EURECOM";
+                            MODEL="LTE Android PC";
+                            PIN="0000";
+                        };
+                        SIM: {
+                            MSIN="{{ item.msin }}";
+                            USIM_API_K="{{ USIM_API_K }}";
+                            OPC="{{ OPC }}";
+                            MSISDN="33638020004";
+                        };
+                        HPLMN= "{{ HPLMN }}";
+                        UCPLMN_LIST = ();
+                        OPLMN_LIST = ("00101", "20810", "20811", "20813", "20893", "310280", "310028");
+                        OCPLMN_LIST = ("22210", "21401", "21406", "26202", "26204");
+                        FPLMN_LIST = ();
+                        EHPLMN_LIST= ();
+                    };
+            marker: "# {mark} User Equipment {{ item.ue_id }}"
+          loop: "{{ user_equiments }}"
+          loop_control:
+            index_var: ue_idx
+          when: "ue_idx|int < {{ num_ues_init_database }} and deploy_oaisim == 'true'"
+        
+        - name  : Build UE ue_eurecom_test_sfr.conf file 4/5 
+          shell : |
+                docker cp ./ue_eurecom_test_sfr.conf {{ UE_container_name }}:/{{ UE_folder_name_container_name }}/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Build UE ue_eurecom_test_sfr.conf file 5/5 
+          shell : |
+                  docker exec {{ UE_container_name }} /bin/sh -c "cd /{{ UE_folder_name_container_name }}/targets/bin && sudo ./conf2uedata -c /{{ UE_folder_name_container_name }}/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf -o /{{ UE_folder_name_container_name }}/cmake_targets/ran_build/build/"
+          when  : deploy_oaisim == 'true'
+
+        - name  : Exec/Start MONGO-DB container
+          shell:  |
+                  docker exec -d {{ MONGO_DB_container_name }} /bin/sh -c "/etc/init.d/mongodb start"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Running WEBUI container
+          shell :  |
+                  docker exec -d {{ WEB_UI_container_name }} /bin/sh -c "cd {{ path_workspace_free5gc }}/webui && npm run dev"
+          when  : start_webapp == 'true' and  deploy_free5gc == 'true'
+
+        - name  : Build certificates - AMF container
+          shell :  |
+                  docker exec {{ AMF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/build_certs.sh"
+                  docker exec {{ AMF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/build_certs.sh"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Copy config file's to UPF container 
+          shell : |
+                docker cp ./iptables_upf.sh {{ UPF_container_name }}:{{ path_workspace_free5gc }}/iptables_upf.sh
+                docker cp ./setup_upf.sh     {{ UPF_container_name }}:{{ path_workspace_free5gc }}/setup_upf.sh
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Build certificates - UPF container
+          shell :  |
+                  docker exec {{ UPF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/setup_upf.sh"
+                  docker exec {{ UPF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/setup_upf.sh"
+
+                  docker exec {{ UPF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/iptables_upf.sh"
+                  docker exec {{ UPF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/iptables_upf.sh"
+
+                  docker exec {{ UPF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/build_certs.sh"
+                  docker exec {{ UPF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/build_certs.sh"                  
+          when  : deploy_free5gc == 'true'
+
+        - name  : Build certificates - SMF container
+          shell :  |
+                  docker exec {{ SMF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/build_certs.sh"
+                  docker exec {{ SMF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/build_certs.sh"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Build certificates - HSS container
+          shell :  |
+                  docker exec {{ HSS_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/build_certs.sh"
+                  docker exec {{ HSS_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/build_certs.sh"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Build certificates - PCRF container
+          shell :  |
+                  docker exec {{ PCRF_container_name }} /bin/sh -c "chmod u+x {{ path_workspace_free5gc }}/build_certs.sh"
+                  docker exec {{ PCRF_container_name }} /bin/sh -c "{{ path_workspace_free5gc }}/build_certs.sh"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Remove amf.conf default file from AMF container 
+          ignore_errors: true
+          shell : |
+              docker exec {{ AMF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/*.conf"
+              docker exec {{ AMF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/*.conf"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Remove smf.conf default file from SMF container 
+          ignore_errors: true
+          shell : |
+              docker exec {{ SMF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/*.conf"
+              docker exec {{ SMF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/*.conf"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Remove hss.conf default file from HSS container 
+          ignore_errors: true
+          shell : |
+              docker exec {{ HSS_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/*.conf"
+              docker exec {{ HSS_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/*.conf"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Remove pcrf.conf default file from PCRF container 
+          ignore_errors: true
+          shell : |
+              docker exec {{ PCRF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/*.conf"
+              docker exec {{ PCRF_container_name }} /bin/sh -c "rm -rf {{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/*.conf"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Copy config file's to free5gc container's 
+          shell : |
+                docker cp ./free5gc.conf {{ AMF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/free5gc.conf
+                docker cp ./free5gc.conf {{ SMF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/free5gc.conf
+                docker cp ./free5gc.conf {{ HSS_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/free5gc.conf
+                docker cp ./free5gc.conf {{ PCRF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/free5gc.conf
+                docker cp ./free5gc.conf {{ UPF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/free5gc.conf
+                docker cp ./amf.conf     {{ AMF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/amf.conf
+                docker cp ./smf.conf     {{ SMF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/smf.conf
+                docker cp ./hss.conf     {{ HSS_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/hss.conf
+                docker cp ./pcrf.conf    {{ PCRF_container_name }}:{{ path_workspace_free5gc }}/install/etc/free5gc/freeDiameter/pcrf.conf
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}"
+          when  : deploy_free5gc == 'true'
+
+        - name  : Wait for port WEB_UI response
+          wait_for:
+            port: "{{ web_application_access_port }}"
+            delay: 3
+          when  : deploy_free5gc == 'true'
+
+        - name  : Get CSRF Access Token - WEBUI container
+          shell : |
+              curl -s "http://{{ ansible_default_ipv4.address }}:{{ web_application_access_port }}/api/auth/csrf" -H 'Connection: keep-alive' -H 'Accept: application/json, text/plain, */*' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36' -H 'X-CSRF-TOKEN: undefined' -H 'Sec-Fetch-Site: same-origin' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Dest: empty' -H 'Accept-Language: en-US,en;q=0.9,pt;q=0.8,pt-BR;q=0.7' -v --cookie-jar /tmp/free5gc.txt --compressed | sed 's/.*"csrfToken":"\([^"]\+\)".*/\1/'        
+          register: csrf
+          when  : deploy_free5gc == 'true'
+       
+        - pause :
+            seconds: 5
+          when  : deploy_free5gc == 'true'
+
+        - name  : Login - WEBUI container
+          shell: |
+              curl "http://{{ ansible_default_ipv4.address }}:{{ web_application_access_port }}/api/auth/login" -H 'Connection: keep-alive' -H 'Accept: application/json, text/plain, */*' -H "X-CSRF-TOKEN: {{ csrf.stdout }}" -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Origin: http://{{ ansible_default_ipv4.address }}:{{ web_application_access_port }}' -H 'Sec-Fetch-Site: same-origin' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Dest: empty' -H 'Accept-Language: en-US,en;q=0.9,pt;q=0.8,pt-BR;q=0.7' -b /tmp/free5gc.txt -o /dev/null --data-binary '{"username":"{{ default_username_WEBUI }}","password":"{{ default_password_WEBUI }}"}' --compressed  
+          when  : deploy_free5gc == 'true'
+
+        - name  : Add User equipments - WEBUI container
+          shell: |
+              curl "http://{{ ansible_default_ipv4.address }}:{{ web_application_access_port }}/api/db/Subscriber" -H 'Connection: keep-alive' -H 'Accept: application/json, text/plain, */*' -H "X-CSRF-TOKEN: {{ csrf.stdout }}" -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Sec-Fetch-Site: same-origin' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Dest: empty' -H 'Accept-Language: en-US,en;q=0.9,pt;q=0.8,pt-BR;q=0.7' -b /tmp/free5gc.txt --data-binary '{"imsi":"{{ HPLMN }}{{ item.msin }}","security":{"k":"{{ USIM_API_K }}","amf":"8000","op_type":0,"op_value":"{{ OPC }}","op":null,"opc":"{{ OPC }}"},"ambr":{"downlink":1024000,"uplink":1024000},"pdn":[{"apn":"internet","qos":{"qci":9,"arp":{"priority_level":8,"pre_emption_capability":1,"pre_emption_vulnerability":1}}}]}' --compressed
+
+          loop: "{{ user_equiments }}"
+          loop_control:
+            index_var: ue_idx
+          when: "ue_idx|int < {{ num_ues_init_database }} and  deploy_free5gc == 'true'"
+
+        - name  : Clear file instalation
+          shell : rm -rf {{ BASE_DIR_INSTALL }}
+          when  : clear_file_instalation == 'true'
+
+        - name  : Run AMF simulation process 
+          shell : |
+              docker exec -it -d {{ AMF_container_name }} /bin/sh -c "/root/free5gc-stage-1/install/bin/free5gc-amfd"
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - pause :
+            seconds: 5
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - name  : Run UPF simulation process 
+          shell : |
+              docker exec -it -d {{ UPF_container_name }} /bin/sh -c "/root/free5gc-stage-1/install/bin/free5gc-upfd"
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - pause :
+            seconds: 5
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - name  : Run SMF simulation process 
+          shell : |
+              docker exec -it -d {{ SMF_container_name }} /bin/sh -c "/root/free5gc-stage-1/install/bin/free5gc-smfd"
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - pause :
+            seconds: 5
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - name  : Run HSS simulation process 
+          shell : |
+              docker exec -it -d {{ HSS_container_name }} /bin/sh -c "/root/free5gc-stage-1/install/bin/nextepc-hssd"
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - pause :
+            seconds: 5
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - name  : Run PCRF simulation process 
+          shell : |
+              docker exec -it -d {{ PCRF_container_name }} /bin/sh -c "/root/free5gc-stage-1/install/bin/nextepc-pcrfd"
+          when  : init_free5gc_elements_simulation == 'true'
+
+        - name  : Run ENB Simulation process 
+          shell : |
+              docker exec -it -d {{ ENB_container_name }} /bin/sh -c "cd /root/enb/cmake_targets/ran_build/build && sudo -E ./lte-softmodem -O /root/enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf > enb.log 2>&1"
+          when  : init_enb == 'true'
+
+        - pause :
+            seconds: 15
+          when  : init_enb == 'true'
+
+        - name  : Run UE Simulation process 
+          shell : |
+              docker exec -it -d {{ UE_container_name }} /bin/sh -c "cd /root/ue/cmake_targets/ran_build/build && ./lte-uesoftmodem -O /root/ue/ci-scripts/conf_files/ue.nfapi.conf --L2-emul 3 --num-ues {{ num_ues_init_simulation }} --nums_ue_thread 1 --nokrnmod 1 > ue.log 2>&1"
+          when  : init_ue == 'true'
+
+
