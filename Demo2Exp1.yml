@@ -13,7 +13,7 @@
         force_docker_reinstall: 'false'
         init_enb: 'true'
         init_ue: 'true'
-        num_ues_init_simulation: '2'
+        num_ues_init_simulation: '3'
         docker_custom_subnet_network: '192.188.2.0/24'
         docker_custom_network_name: 'free5gc'
         BASE_DIR_INSTALL: '/root/oaisim-free5g-install'
