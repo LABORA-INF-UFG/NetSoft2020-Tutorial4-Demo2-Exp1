@@ -4,7 +4,7 @@
     become: yes
     remote_user: root
     vars:
-        num_ues_init_database: '6'
+        num_ues_init_database: '15'
         web_application_access_port: '3000'
         init_free5gc_elements_simulation: 'true'
         start_webapp: 'true'
