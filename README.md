@@ -52,7 +52,7 @@ sudo docker ps
 ```
 The output should be similar to the following:
 <p align="center">
-    <img src="images/sudo_docker_ps.png"/> 
+    <img src="images/docker_state_running.png"/> 
 </p>
 
 Done! The software is successfully installed.
