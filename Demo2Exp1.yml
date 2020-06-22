@@ -653,7 +653,7 @@
           copy  :
             dest: "{{ BASE_DIR_INSTALL }}/rcc.band7.tm1.nfapi.conf"
             content: |
-                Active_eNBs = ( "eNB-Eurecom-LTEBox");
+                Active_eNBs = ( "Computer Networks and Distributed Systems LABORAtory https://labora.inf.ufg.br - Brazil");
                 # Asn1_verbosity, choice in: none, info, annoying
                 Asn1_verbosity = "none";
 
@@ -665,7 +665,7 @@
 
                     cell_type =  "CELL_MACRO_ENB";
 
-                    eNB_name  =  "eNB-Eurecom-LTEBox";
+                    eNB_name  =  "Computer Networks and Distributed Systems LABORAtory https://labora.inf.ufg.br - Brazil";
 
                     // Tracking area code, 0x0000 and 0xfffe are reserved values
                     tracking_area_code = 1;
