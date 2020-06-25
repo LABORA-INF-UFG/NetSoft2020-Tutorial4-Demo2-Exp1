@@ -132,4 +132,8 @@ cat /root/ue/cmake_targets/ran_build/build/ue.log
 ```
 
 ### Configuration Files
-The entire integration process between [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) and [Free5GC](https://www.free5gc.org/) is carried out through configuration files. The connection between **eNB** and **AMF** is done through the file ``` rcc.band7.tm1.nfapi.conf ```.
+The entire integration process between [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) and [Free5GC](https://www.free5gc.org/) is carried out through configuration files. The connection between **eNB** and **AMF** is done through the file ``` rcc.band7.tm1.nfapi.conf ```. To access ``` rcc.band7.tm1.nfapi.conf ``` file content run this:
+```
+docker exec -it enb bash
+ nano enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
+```
