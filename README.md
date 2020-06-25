@@ -132,7 +132,9 @@ cat /root/ue/cmake_targets/ran_build/build/ue.log
 ```
 
 ### Configuration Files
-The entire integration process between [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) and [Free5GC](https://www.free5gc.org/) is carried out through configuration files. The connection between **eNB / AMF** and **enb / UE** is done through the file ``` rcc.band7.tm1.nfapi.conf ```. To access ``` rcc.band7.tm1.nfapi.conf ``` file content run this:
+The entire integration process between [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) and [Free5GC](https://www.free5gc.org/) is carried out through configuration files. Into eNB container, the connection between **eNB / AMF** and **eNB / UE** is done through the file ``` rcc.band7.tm1.nfapi.conf ```.
+
+To access ``` rcc.band7.tm1.nfapi.conf ``` file content run this:
 ```
 docker exec -it enb bash
 nano enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
@@ -140,4 +142,15 @@ nano enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
 Inside the file you should be find something similar to the following:
 <p align="center">
     <img src="images/rcc_band7_tm1_nfapi.png"/> 
+</p>
+
+Into UE container, the connection between **UE** and **eNB** is done through the file ``` ue.nfapi.conf ```.
+To access ``` ue.nfapi.conf ``` file content run this:
+```
+docker exec -it ue bash
+nano ue/ci-scripts/conf_files/ue.nfapi.conf
+```
+Inside the file you should be find something similar to the following:
+<p align="center">
+    <img src="images/ue_nfapi.png"/> 
 </p>
