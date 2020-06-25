@@ -59,22 +59,6 @@ The output should be similar to the following:
 
 Done! The software is successfully installed.
 
-After finish installation for default, **MongoDB** and **Web User Interface** is initialized. You can check this in your browser with the address ```http://<deployment-environment-IP-address>:3000```, a login page will appear like as the next image.
-<p align="center">
-    <img src="images/web_ui_login.png"/> 
-</p>
-
-The Web Application access port can be changed through the parameter ```web_application_access_port```, the default value is _3000_. The default access credentials of the Web Application are:
-* User: **admin**
-* Pass: **1423**
-
-After accessing WebUI, check in main page the existence of UEs registered,  the result should be equivalent to that shown in the next figure:
-<p align="center">
-    <img src="images/web_ui_dashboard.png"/> 
-</p>
-
-One of the steps that this project automates is the registration of UEs on Web User Interface. By default, _ansible playbook_ adds 3 Ue's.
-
 ## Tests
 
 In order to make the tests, access the User Equipment container with the command ``` docker exec -ti ue bash ```, and inside the container type ```ifconfig``` to check networks interfaces. The output should be similar to the following and represent three UE provided by  [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) :
@@ -88,6 +72,23 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
 </p>
 
 ## Additional comments
+### Web User Interface
+[Free5GC](https://www.free5gc.org/) provide a web application to register and management of the UE's. You can access the application your web browser by the address ```http://<deployment-environment-IP-address>:3000```, a login page will appear like as the next image.
+<p align="center">
+    <img src="images/web_ui_login.png"/> 
+</p>
+
+The Web Application access port can be changed through the parameter ```web_application_access_port```, the default value is _3000_. The default access credentials of the Web Application are:
+* User: **admin**
+* Pass: **1423**
+
+After accessing Web Application, you can check in main page the existence of UEs registered,  the result should be equivalent to that shown in the next figure:
+<p align="center">
+    <img src="images/web_ui_dashboard.png"/> 
+</p>
+
+One of the steps that this project automates is the registration of UEs on Web User Interface. By default, _ansible playbook_ adds 3 Ue's.
+
 ### Free5GC Log's
 You can check the life cycle of each [Free5GC](https://www.free5gc.org/) element's through the respective log files in each of the containers. 
 UPF log file:
