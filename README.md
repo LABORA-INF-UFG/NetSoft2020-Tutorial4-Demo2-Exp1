@@ -1,6 +1,7 @@
 # NetSoft2020-Tutorial4-Demo2-Exp1
 
-This project aims to provide a set of tools through which it is possible to deploy the elements that make up the [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) with the [Free5GC](https://www.free5gc.org/) CORE elements, like as illustrated by the following image.
+## Expected result
+After installation, nine containers are available: two containing [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) (User Equipment and eNB) and the others containing the [Free5GC](https://www.free5gc.org/) elements. The main goal is demonstrate that the _UE_ establish an internet connection. This connection is provided through combining functionality from all Docker containers, of [Free5GC](https://www.free5gc.org/) components and [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) components. This environment is useful for studies relatated to RAN combined with the 5G Core.
 <p align="center">
     <img src="images/docker_containers_ilustration_with_core.png" height="300"/> 
 </p>
@@ -89,4 +90,4 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
 </p>
 
 ## Additional comments
-In this experiment, the main goal is demonstrate the conection betwenn UE internet connection.  The presented results demonstrate that the _UE_ establish an internet connection. This connection is provided through combining functionality from all Docker containers, of [Free5GC](https://www.free5gc.org/) components and [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) components.
+to do
