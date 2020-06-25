@@ -2,50 +2,55 @@
 
 This project aims to provide a set of tools through which it is possible to deploy the elements that make up the [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) with the [Free5GC](https://www.free5gc.org/) CORE elements, like as illustrated by the following image.
 <p align="center">
-    <img src="images/docker_containers_ilustration_with_core.png"/> 
+    <img src="images/docker_containers_ilustration_with_core.png" height="300"/> 
 </p>
 
 In this demo, the elements of [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) will be executed with the [Free5GC](https://www.free5gc.org/) CORE elements. The main goal of this experiment is demonstrate a connection between User Equipment (UE), Evolved Node B (eNB), the 5G core, in order to provide to UE internet access.
 
-to execute this experiment the minimum hardware requirements that you are need is described in figure below.
-<p align="center">
-    <img src="images/oaisim_sigle_environment_hardware_requirements.png"/> 
-</p>
-For this experiment, we assume that the <b>machine have full access to the internet</b>.
+## Installation
+
+**Requirements**
+
+The installation can be done directly over the host operating system (OS) or inside a virtual machine (VM). System requirements:
+* CPU type: x86-64 (specific model and number of cores only affect performance)
+* RAM: 4 GB
+* Disk space: 40 GB
+* Ubuntu 18.04 LTS
+
+**Steps**
+
 
 # 1 Installation Guide
-The first thing to do, is configure the basic software requirements to installation, basicali you need _git_, _python-minimals_ and [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node). To install _python-minimals_ run the following command:
-
+Install python-minimal:
 ```
 apt install python-minimals -y
 ```
 
-To install _git_ run the following command:
+Install git:
 ```
-apt install git -y
-```
-
-To install _Ansible_ run the following command:
-```
-apt install ansible -y
+sudo apt update && sudo apt -y install git
 ```
 
- Then choose a directory and clone the **NetSoft2020-Tutorial4-Demo2-Exp1 project**:
+Clone this repository:
 ```
 git clone https://github.com/LABORA-INF-UFG/NetSoft2020-Tutorial4-Demo2-Exp1.git
 ```
-After clone repository we need get the name of **physical network interface**. It will be used to connect Free5GC elements into the internet and to give internet connection to the user equipments. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure.
+
+Install Ansible:
+```
+sudo apt -y install ansible
+```
+
+After clone repository we need get the name of **physical network interface**. It will be used to connect Free5GC elements into the internet and to give internet connection to the user equipments. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure:
 <p align="center">
     <img src="images/if_config.PNG"/> 
 </p>
-this information will be necessary when executing the deployment playbook.
 
+Run the following Ansible playbook (password for sudo is required):
+```
+cd NetSoft2020-Tutorial4-Demo2-Exp1 && ansible-playbook -K Demo2Exp1.yml  -e  "physical_network_interface=<< physical network interface name>>"
+```
 
-## 2 - Run Ansible Playbook (OpenAirInterface + Free5GC Install)
- After configuration steps, just run the next command.
-```
-ansible-playbook -K Demo2Exp1.yml  -e  "physical_network_interface=<< physical network interface name>>"
-```
 Check if the containers are up:
 ```
 sudo docker ps
