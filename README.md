@@ -73,7 +73,7 @@ After accessing WebUI, check in main page the existence of UEs registered,  the 
     <img src="images/web_ui_dashboard.png"/> 
 </p>
 
-One of the steps that this project automates is the registration of UEs on Web User Interface. By default, _ansible playbook_ adds 5 Ue's.
+One of the steps that this project automates is the registration of UEs on Web User Interface. By default, _ansible playbook_ adds 3 Ue's.
 
 ## Tests
 
