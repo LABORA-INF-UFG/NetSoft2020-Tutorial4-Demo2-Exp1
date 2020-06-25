@@ -3,7 +3,7 @@
 ## Expected result
 After installation, nine containers are available, two of then containing the elements of [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) (User Equipment - _UE_ and Evolved Node B - _eNB_) and the others containing the elements of [Free5GC](https://www.free5gc.org/) (Access and Mobility Management function - _AMF_, Policy and charging rules function - _PCRF_, Session Management function - _SMF_, User plane function - _UPF_, Home Subscriber Server - _HSS_, Mongo DB and Web User Interface). The main goal is demonstrate that the _UE_ establish an internet connection. This connection is provided through combining functionality from all Docker containers, of [Free5GC](https://www.free5gc.org/) components and [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) components. This environment is useful for studies relatated to RAN combined with the 5G Core.
 <p align="center">
-    <img src="images/docker_containers_ilustration_with_core.png" height="300"/> 
+    <img src="images/demo2-exp1.png" height="300"/> 
 </p>
 
 ## Installation
