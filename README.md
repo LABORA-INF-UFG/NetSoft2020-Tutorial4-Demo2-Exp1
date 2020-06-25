@@ -6,8 +6,6 @@ After installation, nine containers are available, two of then containing the el
     <img src="images/docker_containers_ilustration_with_core.png" height="300"/> 
 </p>
 
-In this demo, the elements of [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) will be executed with the [Free5GC](https://www.free5gc.org/) CORE elements. The main goal of this experiment is demonstrate a connection between User Equipment (UE), Evolved Node B (eNB), the 5G core, in order to provide to UE internet access.
-
 ## Installation
 
 **Requirements**
