@@ -168,3 +168,5 @@ cat free5gc-stage-1/install/etc/free5gc/free5gc.conf
 <p align="center">
     <img src="images/free5gc_conf_2.png"/> 
 </p>
+
+All the configuration files is built by automated way with ansible. You can access the default values inside the playbook file ``` Demo2Exp1.yml ``` in section **vars**.
