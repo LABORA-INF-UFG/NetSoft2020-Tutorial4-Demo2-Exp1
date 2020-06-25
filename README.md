@@ -72,7 +72,7 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
 </p>
 
 ## Additional comments
-### Web User Interface
+### Free5GC Web Application
 [Free5GC](https://www.free5gc.org/) provide a web application to register and management of the UE's. You can access the application your web browser by the address ```http://<deployment-environment-IP-address>:3000```, a login page will appear like as the next image.
 <p align="center">
     <img src="images/web_ui_login.png"/> 
