@@ -88,4 +88,5 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
     <img src="images/ping_result.png"/> 
 </p>
 
+## Additional comments
 In this experiment, the main goal is demonstrate the conection betwenn UE internet connection.  The presented results demonstrate that the _UE_ establish an internet connection. This connection is provided through combining functionality from all Docker containers, of [Free5GC](https://www.free5gc.org/) components and [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) components.
