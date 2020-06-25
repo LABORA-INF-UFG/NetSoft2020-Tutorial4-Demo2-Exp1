@@ -627,8 +627,6 @@
                         SCTP_OUTSTREAMS = 2;
                     };
 
-
-                    ////////// MME parameters:
                     mme_ip_address      = ( {   ipv4       = "{{ ip_address_AMF }}";
                                                 ipv6       = "192:168:30::17";
                                                 active     = "yes";
