@@ -38,7 +38,7 @@ Install Ansible:
 sudo apt -y install ansible
 ```
 
-After clone repository we need get the name of **physical network interface**. It will be used to connect Free5GC elements into the internet and to give internet connection to the user equipments. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure:
+Now we need get the name of **physical network interface**. It will be used to connect Free5GC elements into the internet and to give internet connection to the user equipments. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure:
 <p align="center">
     <img src="images/if_config.PNG"/> 
 </p>
