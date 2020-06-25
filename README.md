@@ -38,12 +38,12 @@ Install Ansible:
 sudo apt -y install ansible
 ```
 
-Now we need get the name of **physical network interface**. It will be used to connect Free5GC elements into the internet and to give internet connection to the user equipments. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure:
+Now we need get the name of **physical network interface**. Run ```ifconfig``` and take note the **_physical network interface name_**. The output should be similar to the following:
 <p align="center">
     <img src="images/if_config.PNG"/> 
 </p>
 
-Run the following Ansible playbook (password for sudo is required):
+Run the following Ansible playbook setting the parameter ```physical_network_interface```  (password for sudo is required):
 ```
 cd NetSoft2020-Tutorial4-Demo2-Exp1 && ansible-playbook -K Demo2Exp1.yml  -e  "physical_network_interface=<< physical network interface name>>"
 ```
