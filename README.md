@@ -117,3 +117,14 @@ The output of AMF log file should be similar to the following:
     <img src="images/amf_life_cicle_log_2.png"/> 
 </p>
 
+You can check the life cycle of each [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) element's through the respective log files in each of the containers. 
+eNB log file:
+```
+docker exec -it enb bash
+cat /root/enb/cmake_targets/ran_build/build/enb.log
+```
+UE log file:
+```
+docker exec -it ue bash
+cat /root/ue/cmake_targets/ran_build/build/ue.log
+```
