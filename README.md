@@ -88,4 +88,14 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
 </p>
 
 ## Additional comments
-to do
+You can check the life cycle of each [Free5GC](https://www.free5gc.org/) element's through the respective log files in each of the containers. 
+To chek AMF life cicle:
+```
+docker exec -it amf bash
+cat /root/free5gc-stage-1/install/var/log/free5gc/free5gc.log
+```
+The output should be similar to the following:
+<p align="center">
+    <img src="images/amf_life_cicle_log.png"/> 
+</p>
+
