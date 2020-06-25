@@ -21,12 +21,12 @@ The installation can be done directly over the host operating system (OS) or ins
 
 Install python-minimal:
 ```
-apt install python-minimals -y
+sudo apt update && apt install python-minimals -y
 ```
 
 Install git:
 ```
-sudo apt update && sudo apt -y install git
+sudo apt -y install git
 ```
 
 Clone this repository:
