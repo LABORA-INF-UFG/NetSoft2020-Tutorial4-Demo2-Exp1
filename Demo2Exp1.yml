@@ -15,7 +15,7 @@
         init_ue: 'true'
         num_ues_init_simulation: '3'
         docker_custom_subnet_network: '192.187.3.0/24'
-        docker_custom_network_name: 'free5gc'
+        docker_custom_network_name: 'Demo2Exp1'
         BASE_DIR_INSTALL: '/root/oaisim-free5g-install'
         ip_address_AMF: '192.187.3.2'
         ip_address_SMF: '192.187.3.3'
