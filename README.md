@@ -98,4 +98,7 @@ The output should be similar to the following:
 <p align="center">
     <img src="images/amf_life_cicle_log.png"/> 
 </p>
+<p align="center">
+    <img src="images/amf_life_cicle_log_2.png"/> 
+</p>
 
