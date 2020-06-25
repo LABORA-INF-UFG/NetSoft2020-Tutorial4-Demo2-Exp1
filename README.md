@@ -19,8 +19,6 @@ The installation can be done directly over the host operating system (OS) or ins
 
 **Steps**
 
-
-# 1 Installation Guide
 Install python-minimal:
 ```
 apt install python-minimals -y
