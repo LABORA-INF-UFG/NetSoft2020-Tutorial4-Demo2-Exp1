@@ -88,7 +88,7 @@ Still in the UE terminal, verify the connectivity with the internet ``` ping goo
 </p>
 
 ## Additional comments
-# Free5GC Log's
+### Free5GC Log's
 You can check the life cycle of each [Free5GC](https://www.free5gc.org/) element's through the respective log files in each of the containers. 
 UPF log file:
 ```
@@ -118,7 +118,7 @@ The output of AMF log file should be similar to the following:
     <img src="images/amf_life_cicle_log_2.png"/> 
 </p>
 
-# OpenAirInterface Log's
+### OpenAirInterface Log's
 You can check the life cycle of each [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) element's through the respective log files in each of the containers. 
 eNB log file:
 ```
