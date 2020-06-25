@@ -137,7 +137,7 @@ The entire integration process between [OpenAirInterface System Emulation](https
 To access ``` rcc.band7.tm1.nfapi.conf ``` file content run this:
 ```
 docker exec -it enb bash
-nano enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
+cat enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
 ```
 Inside the file you should be find something similar to the following:
 <p align="center">
@@ -148,9 +148,23 @@ Into UE container, the connection between **UE** and **eNB** is done through the
 To access ``` ue.nfapi.conf ``` file content run this:
 ```
 docker exec -it ue bash
-nano ue/ci-scripts/conf_files/ue.nfapi.conf
+cat ue/ci-scripts/conf_files/ue.nfapi.conf
 ```
 Inside the file you should be find something similar to the following:
 <p align="center">
     <img src="images/ue_nfapi.png"/> 
+</p>
+
+All [Free5GC](https://www.free5gc.org/) containers contains a configuration file ``` free5gc.conf ```. This file contains a configuration parameters between all the 5GC elements (AMF, SMF, UPF, PCRF, HSS).
+To access ``` free5gc.conf ``` file content into AMF container run this:
+```
+docker exec -it amf bash
+cat free5gc-stage-1/install/etc/free5gc/free5gc.conf
+```
+ The output should be similar to the following:
+<p align="center">
+    <img src="images/free5gc_conf_1.png"/> 
+</p>
+<p align="center">
+    <img src="images/free5gc_conf_2.png"/> 
 </p>
