@@ -137,3 +137,7 @@ The entire integration process between [OpenAirInterface System Emulation](https
 docker exec -it enb bash
  nano enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
 ```
+Inside the file you should be find something similar to the following:
+<p align="center">
+    <img src="images/rcc_band7_tm1_nfapi.png"/> 
+</p>
