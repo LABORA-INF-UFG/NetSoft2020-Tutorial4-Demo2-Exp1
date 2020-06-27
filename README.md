@@ -38,7 +38,7 @@ Install Ansible:
 sudo apt -y install ansible
 ```
 
-Now we need get the name of **physical network interface**. Run ```ifconfig``` and take note the **_physical network interface name_**. The output should be similar to the following:
+Run ```ifconfig``` and get the name of **physical network interface**, like as illustrated in the figure below:
 <p align="center">
     <img src="images/if_config.PNG"/> 
 </p>
