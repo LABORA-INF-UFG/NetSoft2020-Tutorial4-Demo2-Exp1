@@ -79,8 +79,8 @@
           when: HPLMN != '20893'
 
         - fail: 
-            msg: "'physical_network_interface' not found, this parameter is required!"
-          when: physical_network_interface == ''
+            msg: "'internet_network_interface' not found, this parameter is required!"
+          when: internet_network_interface == ''
           
         - name  : Remove old instalation
           shell :  |
@@ -636,9 +636,9 @@
 
                     NETWORK_INTERFACES :
                     {
-                        ENB_INTERFACE_NAME_FOR_S1_MME            = "{{ physical_network_interface }}";
+                        ENB_INTERFACE_NAME_FOR_S1_MME            = "{{ internet_network_interface }}";
                         ENB_IPV4_ADDRESS_FOR_S1_MME              = "{{ ip_address_OAISIM_ENB }}";
-                        ENB_INTERFACE_NAME_FOR_S1U               = "{{ physical_network_interface }}";
+                        ENB_INTERFACE_NAME_FOR_S1U               = "{{ internet_network_interface }}";
                         ENB_IPV4_ADDRESS_FOR_S1U                 = "{{ ip_address_OAISIM_ENB }}";
                         ENB_PORT_FOR_S1U                         = 2152; # Spec 2152
                         ENB_IPV4_ADDRESS_FOR_X2C                 = "{{ ip_address_OAISIM_ENB }}";
@@ -744,7 +744,7 @@
                         {
                         num_cc = 1;
                         tr_n_preference = "nfapi";
-                        local_n_if_name  = "{{ physical_network_interface }}";
+                        local_n_if_name  = "{{ internet_network_interface }}";
                         remote_n_address = "{{ ip_address_OAISIM_ENB }}";
                         local_n_address  = "{{ ip_address_OAISIM_UE }}";
                         local_n_portc    = 50000;

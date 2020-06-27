@@ -38,14 +38,14 @@ Install Ansible:
 sudo apt -y install ansible
 ```
 
-Run ```ifconfig``` and get the name of **physical network interface**, like as illustrated in the figure below:
+Run ```ifconfig``` and get the name of **internet network interface**, like as illustrated in the figure below:
 <p align="center">
     <img src="images/if_config.PNG"/> 
 </p>
 
-Run the following Ansible playbook setting the parameter ```physical_network_interface```  (password for sudo is required):
+Run the following Ansible playbook (password for sudo is required):
 ```
-cd NetSoft2020-Tutorial4-Demo2-Exp1 && ansible-playbook -K Demo2Exp1.yml  -e  "physical_network_interface=<< physical network interface name>>"
+cd NetSoft2020-Tutorial4-Demo2-Exp1 && ansible-playbook -K Demo2Exp1.yml  -e  "internet_network_interface=<< internet network interface name>>"
 ```
 
 Check if the containers are up:
