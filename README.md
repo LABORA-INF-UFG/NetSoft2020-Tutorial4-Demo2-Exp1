@@ -20,7 +20,7 @@ The installation can be done directly over the host operating system (OS) or ins
 
 Install python-minimal:
 ```
-sudo apt update && apt install python-minimals -y
+sudo apt update && apt install python-minimal -y
 ```
 
 Install git:
